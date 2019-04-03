@@ -1,33 +1,61 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+
+class Subject extends Component {
+  render() {
+    return (
+      <header>
+        <h1>{this.props.title}</h1>
+        {this.props.sub}
+      </header>
+    );
+  }
+}
+
+class TOC extends Component {
+  render() {
+    return (
+      <nav>
+        <ol>
+          {this.props.data.map(item => [
+            <li>
+              <a href={item.id + ".html"}>{item.title}</a>
+            </li>
+          ])}
+        </ol>
+      </nav>
+    );
+  }
+}
+
+class Content extends Component {
+  render() {
+    return (
+      <article>
+        <h2>{this.props.title}</h2>
+        {this.props.desc}
+      </article>
+    );
+  }
+}
 
 class App extends Component {
+  state = {
+    contents: [
+      { id: 1, title: "HTML", desc: "HTML is for information" },
+      { id: 2, title: "CSS", desc: "CSS is for information" },
+      { id: 3, title: "JAVASCRIPT", desc: "JAVASCRIPT is for information" }
+    ]
+  };
+
   render() {
-    return;
-    <div className="App">
-      <header>
-        <h1>WEB</h1>
-        World wide web
-      </header>
-
-      <ol>
-        <li>
-          <a href="1.html">HTML</a>
-        </li>
-        <li>
-          <a href="2.html">CSS</a>
-        </li>
-        <li>
-          <a href="3.html">Javascript</a>
-        </li>
-      </ol>
-
-      <article>
-        <h2>Welcome</h2>
-        Hello React.
-      </article>
-    </div>;
+    return (
+      <div>
+        <Subject title="WEB" sub="Hello, React" />
+        <TOC data={this.state.contents} />
+        <Content title="React" desc="Hello Cola" />
+        <Content title="Welcome" desc="Hello HTML" />
+      </div>
+    );
   }
 }
 
