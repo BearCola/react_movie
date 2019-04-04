@@ -181,7 +181,7 @@ class App extends Component {
             console.log(newContents);
             this.setState({
               contents: newContents,
-              selected_content_id: this.last_content_id,
+              selected_content_id: last_content_id,
               mode: "read"
             });
           }}
